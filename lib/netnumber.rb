@@ -47,7 +47,7 @@ class Netnumber
   	  begin
   	    resolver = Dnsruby::Resolver.new(:nameserver => services[current_index], :query_timeout => 15)
   	    @response = resolver.query(mobile_phone,'ANY')
-  	    @nnid = decode_nnid_from_answer(@response)
+  	    @nnid = @response.answer[0].rdata[1,6]
   	    break
   	  # if the phone number format was incorrect, a NXDomain exception is thrown by dnsruby
   	  rescue Dnsruby::NXDomain
@@ -68,21 +68,4 @@ class Netnumber
     resolver.close
     return @response   	  
   end
-  
-  # checks if this company is one of the wireless carriers
-  def valid?
-    WIRELESS_NNIDS.include? nnid
-  end
-  
-  private
-    # once a valid response is received from NetNumber, we need to pull just the six digit NNID from the response
-    def decode_nnid_from_answer(response)
-      nnid = ""
-      response.each_answer {|answer| nnid = answer.rdata_to_string}
-      readable_nnid = ""
-      for j in 8..nnid.length
-        readable_nnid << nnid[j,1] if j % 2 == 0
-      end
-      return readable_nnid
-    end
 end
