@@ -2,13 +2,13 @@ require 'netnumber/version'
 
 AUTHOR = 'Rudy A. Sombillo'  # can also be an array of Authors
 EMAIL = "rsombillo@gmail.com"
-DESCRIPTION = "description of gem"
+DESCRIPTION = "A ruby gem that uses the NetNumber interface to determine the service provider of a phone number."
 GEM_NAME = 'netnumber' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'netnumber' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 EXTRA_DEPENDENCIES = [
-#  ['activesupport', '>= 1.3.1']
+  ['dnsruby', '>= 1.1.']
 ]    # An array of rubygem dependencies [name, version]
 
 @config_file = "~/.rubyforge/user-config.yml"

@@ -78,7 +78,7 @@ class Netnumber
     # once a valid response is received from NetNumber, we need to pull just the six digit NNID from the response
     def decode_nnid_from_answer(response)
       nnid = ""
-      response.each_answer {|answer| nnid << answer.rdata_to_string}
+      response.each_answer {|answer| nnid = answer.rdata_to_string}
       readable_nnid = ""
       for j in 8..nnid.length
         readable_nnid << nnid[j,1] if j % 2 == 0
